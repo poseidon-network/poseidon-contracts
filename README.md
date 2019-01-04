@@ -4,7 +4,7 @@
 
 **poseidon-contracts** is the smart contracts based on TRON for the Posideon Dapp.
 
-[Posideon Dapp](https://poseidon.network/dapp): Next-Generation Content Layer (CDN + DSN), incentivized by TRX. Utilized unused bandwidth and storage from any NAS, desktop, or mobile devices around the world. It’s distributed, efficient, and integrates perfectly with existing internet and blockchain infrastructure.
+[Posideon Dapp](https://poseidon.network/tron-dapp): Next-Generation Content Layer (CDN + DSN), incentivized by TRX. Utilized unused bandwidth and storage from any NAS, desktop, or mobile devices around the world. It’s distributed, efficient, and integrates perfectly with existing internet and blockchain infrastructure.
 
 ## Installation
 
