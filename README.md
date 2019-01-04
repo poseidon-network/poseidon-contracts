@@ -12,7 +12,44 @@ $ npm install
 
 ## Development
 
+Start tronbox:
+
+```
+$ npm run tronbox
+```
+
+Compile:
+
+```
+$ npm run compile
+```
+
+Testing:
+
+```
+$ npm run test
+```
+
+Test coverage:
+
+```
+$ npm run report
+```
+
 ## Deployment
+
+Deploy to local development network
+
+```
+$ npm run dev
+```
+
+Deploy to shasta network
+
+```
+$ npm run shasta
+```
+
 
 ## API Document
 
