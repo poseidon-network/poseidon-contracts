@@ -6,57 +6,20 @@
 
 [Posideon Dapp](https://poseidon.network/tron-dapp): Next-Generation Content Layer (CDN + DSN), incentivized by TRX. Utilized unused bandwidth and storage from any NAS, desktop, or mobile devices around the world. It’s distributed, efficient, and integrates perfectly with existing internet and blockchain infrastructure.
 
-## Installation
+## Address on TRON mainchain
 
-```
-$ npm install
-```
-
-Create a `.env` from `.env.sample`.
-
-## Development
-
-Start tronbox:
-
-```
-$ npm run tronbox
-```
-
-Compile:
-
-```
-$ npm run compile
-```
-
-Testing:
-
-```
-$ npm run test
-```
-
-Test coverage:
-
-```
-$ npm run report
-```
-
-## Deployment
-
-Deploy to local development network
-
-```
-$ npm run dev
-```
-
-Deploy to shasta network
-
-```
-$ npm run shasta
-```
-
+[TVcTcDVUJkVHvLWcQcnwNFLtfUYXyfWLju](https://tronscan.org/#/contract/TVcTcDVUJkVHvLWcQcnwNFLtfUYXyfWLju)
 
 ## API Document
 
+### get instance on mainchain using TRONWEB
+[TRONWEB](https://developers.tron.network/docs/tron-web-intro)
+
+Example:
+
+```
+var instance = tronWeb.contract(abi, "TVcTcDVUJkVHvLWcQcnwNFLtfUYXyfWLju")
+```
 ### pay
 
 Pay to download a file
