@@ -6,6 +6,10 @@
 
 [Posideon Dapp](https://poseidon.network/tron-dapp): Next-Generation Content Layer (CDN + DSN), incentivized by TRX. Utilized unused bandwidth and storage from any NAS, desktop, or mobile devices around the world. It’s distributed, efficient, and integrates perfectly with existing internet and blockchain infrastructure.
 
+iOS Alpha download：https://www.pgyer.com/SszB
+demo video: https://drive.google.com/file/d/1ST26R1qKQJUmqG_vWiZEYyUAzG9aZ7rg/
+introduction deck: https://drive.google.com/file/d/1m2MyNDBw2jSseZ_KaNYGQ07rkAzuVg9E/
+
 ## Address on TRON mainchain
 
 [TVcTcDVUJkVHvLWcQcnwNFLtfUYXyfWLju](https://tronscan.org/#/contract/TVcTcDVUJkVHvLWcQcnwNFLtfUYXyfWLju)
