@@ -5,14 +5,7 @@
   "directories": {
     "test": "test"
   },
-  "scripts": {
-    "tronbox": "tronbox",
-    "compile": "tronbox compile",
-    "test": "tronbox test",
-    "report": "solidity-coverage",
-    "shasta": "tronbox migrate --network shasta",
-    "dev": "tronbox migrate --network development"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/poseidon-network/poseidon-contracts.git"
@@ -24,23 +17,19 @@
   },
   "homepage": "https://github.com/poseidon-network/poseidon-contracts",
   "devDependencies": {
-    "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "^3.0.1",
     "ethereumjs-abi": "^0.6.4",
     "ethereumjs-util": "^5.1.2",
     "lodash": "^4.17.4",
-    "solidity-coverage": "^0.5.0"
+    "solidity-coverage": "^0.5.0",
+    "truffle-hdwallet-provider": "^1.0.8"
   },
   "dependencies": {
     "dotenv": "^5.0.0",
     "eslint": "^4.19.1",
+    "openzeppelin-solidity": "^2.2.0",
     "solium": "^1.1.6",
     "tronbox": "^2.2.1",
     "tronweb": "^2.1.10",
-    "web3-utils": "^1.0.0-beta.33",
-    "zeppelin-solidity": "^1.9.0"
+    "web3-utils": "^1.0.0-beta.33"
   }
 }
