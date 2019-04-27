@@ -24,6 +24,8 @@
   "homepage": "https://github.com/poseidon-network/poseidon-contracts",
   "devDependencies": {
     "dotenv": "^5.0.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.2.0",
     "ethereumjs-abi": "^0.6.4",
     "ethereumjs-util": "^5.1.2",
     "husky": "^2.1.0",
@@ -42,7 +44,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint ./test ./migrations --fix",
+      "eslint \"**/*.js\" --fix",
       "git add"
     ],
     "*.sol": [
