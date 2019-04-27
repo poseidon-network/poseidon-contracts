@@ -6,6 +6,8 @@
     "test": "test"
   },
   "scripts": {
+    "compile": "truffle compile",
+    "console": "truffle console",
     "dev": "truffle migrate --network development",
     "ropsten": "truffle migrate --network ropsten",
     "test": "truffle test"
