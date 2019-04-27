@@ -18,11 +18,13 @@ contract QQQ is ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable, Ownable {
     address constant internal ZERO_ADDRESS = address(0);
     Compliance public compliance;
 
-    constructor() public
-        ERC20Burnable()
-        ERC20Mintable()
-        ERC20Detailed(NAME, SYMBOL, DECIMALS)
+    constructor()
         ERC20()
+        ERC20Detailed(NAME, SYMBOL, DECIMALS)
+        ERC20Mintable()
+        ERC20Burnable()
+        Ownable()
+        public
     {
         _mint(msg.sender, INITIAL_SUPPLY);
     }
