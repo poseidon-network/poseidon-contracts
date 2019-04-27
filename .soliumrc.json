@@ -1,7 +1,8 @@
 {
   "extends": "solium:recommended",
   "plugins": [
-    "security"
+    "security",
+    "zeppelin"
   ],
   "rules": {
     "quotes": [
@@ -12,6 +13,12 @@
       "error",
       4
     ],
-    "security/no-tx-origin": "off"
+    "security/no-tx-origin": "off",
+    "zeppelin/missing-natspec-comments": [
+      "off"
+    ],
+    "zeppelin/no-unused-imports": [
+      "error"
+    ]
   }
 }

@@ -7,7 +7,7 @@ import "openzeppelin-solidity/contracts/token/ERC20/ERC20Mintable.sol";
 
 
 contract QQQ is ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable {
-    uint private INITIAL_SUPPLY = 10000e18;
+    uint constant private INITIAL_SUPPLY = 10000e18;
 
     constructor() public
         ERC20Burnable()
