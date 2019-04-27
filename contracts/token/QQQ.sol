@@ -11,13 +11,17 @@ import "../compliance/Compliance.sol";
 
 contract QQQ is ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable, Ownable {
     uint constant private INITIAL_SUPPLY = 10000e18;
+    string constant public NAME = "QQQToken";
+    string constant public SYMBOL = "QQQ";
+    uint8 constant public DECIMALS = 18;
+
     address constant internal ZERO_ADDRESS = address(0);
     Compliance public compliance;
 
     constructor() public
         ERC20Burnable()
         ERC20Mintable()
-        ERC20Detailed("QQQToken", "QQQ", 18)
+        ERC20Detailed(NAME, SYMBOL, DECIMALS)
         ERC20()
     {
         _mint(msg.sender, INITIAL_SUPPLY);
@@ -49,7 +53,6 @@ contract QQQ is ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable, Ownable {
      *  @dev Checks if a transfer may take place between the two accounts.
      *
      *   Validates that the transfer can take place.
-     *     - Ensure the 'to' address is not cancelled
      *     - Ensure the transfer is compliant
      *  @param from The sender address.
      *  @param to The recipient address.
