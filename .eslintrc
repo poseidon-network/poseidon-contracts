@@ -1,0 +1,21 @@
+{
+  "env": {
+    "node": true,
+    "mocha": true,
+    "commonjs": true
+  },
+  "extends": [
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "globals": {
+    "assert": true,
+    "web3": true,
+    "artifacts": true,
+    "contract": true
+  },
+  "rules": {}
+}
