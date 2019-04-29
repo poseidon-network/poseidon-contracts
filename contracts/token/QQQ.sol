@@ -11,7 +11,7 @@ import "../compliance/Compliance.sol";
 
 contract QQQ is ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable, Ownable {
     uint constant private INITIAL_SUPPLY = 21000000000e18; // 21 Billion
-    string constant public NAME = "QQQToken";
+    string constant public NAME = "QQQ Token";
     string constant public SYMBOL = "QQQ";
     uint8 constant public DECIMALS = 18;
 
