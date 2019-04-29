@@ -17,11 +17,13 @@ module.exports = {
       skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
     },
     mainnet: {
-      provider: () => new HDWalletProvider(process.env.MNENOMIC, `https://mainnet.infura.io/${process.env.INFURA_API_KEY}`),
+      provider: () => new HDWalletProvider(process.env.MNENOMIC, `https://mainnet.infura.io/v3/${process.env.PORJECT_ID}`),
       network_id: 1,
       gas: 7500000,
+      gasPrice: 3000000000,
       confirmations: 2,
       timeoutBlocks: 200,
+      skipDryRun: true,
     },
   },
   mocha: {
