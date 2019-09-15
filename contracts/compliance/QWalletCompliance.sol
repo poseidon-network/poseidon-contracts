@@ -1,8 +1,34 @@
 pragma solidity >=0.5.0;
 
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./Compliance.sol";
 
-contract QASCompliance is Compliance {
+contract QWalletCompliance is Compliance, Ownable {
+    mapping (address => bool) public isETHSent;
+    mapping (address => bool) public isBlackList;
+
+    constructor()
+        Ownable()
+        public
+    {}
+
+    /**
+    * Ban the given user address
+    *
+    */
+    function banAddress(address user) external onlyOwner {
+        isBlackList[user] = true;
+    }
+
+    /**
+    *  Approve the given user address
+    *
+    */
+    function approveAddress(address user) external onlyOwner {
+        isBlackList[user] = false;
+    }
+
+
     /**
      *  @dev Checks if a transfer can occur between the from/to addresses.
      *
@@ -15,6 +41,6 @@ contract QASCompliance is Compliance {
      *  @return If a transfer can occur between the from/to addresses.
      */
     function canTransfer(address initiator, address from, address to, uint256 tokens) external returns (bool) {
-        return true;
+        return !isBlackList[to];
     }
 }
