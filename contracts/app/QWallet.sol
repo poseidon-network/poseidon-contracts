@@ -72,7 +72,7 @@ contract QWallet is Ownable {
     * Set the adrress of Poseidon
     *  @param _poseidonAddress poseidon address
     */
-    function setPoseidonAddress (address _poseidonAddress) external onlyOwner {
+    function setPoseidonAddress(address _poseidonAddress) external onlyOwner {
         poseidonAddress = _poseidonAddress;
     }
 
