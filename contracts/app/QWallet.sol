@@ -45,7 +45,7 @@ contract QWallet is Ownable {
     * @param amount The number of tokens being transferred.
     */
     function transferETH(address payable to, uint256 amount) external onlyOwner returns (bool) {
-        require(amount < 0.5 ether, "Amount should be less than 1 Ether");
+        require(amount < 0.5 ether, "Amount should be less than 0.5 Ether");
         require(canTransferETH(msg.sender, to, amount), "Not allow transfer ETH to this address");
         to.transfer(amount);
         isETHTransfer[to] = true;
