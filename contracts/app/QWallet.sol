@@ -1,6 +1,6 @@
 pragma solidity >=0.5.0;
 
-import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
+import "../../node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "../token/QQQ.sol";
 import "../compliance/Compliance.sol";
 
@@ -44,11 +44,20 @@ contract QWallet is Ownable {
     * @param to The address to transfer to.
     * @param amount The number of tokens being transferred.
     */
-    function transferETH(address payable to, uint256 amount) external onlyOwner returns (bool) {
-        require(amount < 0.5 ether, "Amount should be less than 0.5 Ether");
+    function transferETH(address payable to, uint256 amount) external onlyOwner {
+        require(amount < 0.5 ether, "Amount should be less than 0.5  Ether");
         require(canTransferETH(msg.sender, to, amount), "Not allow transfer ETH to this address");
         to.transfer(amount);
         isETHTransfer[to] = true;
+    }
+
+
+    /**
+    * @dev Reset is ETH transfer
+    * @param addr The address to transfer to.
+    */
+    function resetIsTransferETH(address payable addr) external onlyOwner {
+        isETHTransfer[addr] = false;
     }
 
 

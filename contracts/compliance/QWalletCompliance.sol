@@ -1,6 +1,6 @@
 pragma solidity >=0.5.0;
 
-import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
+import "../../node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./Compliance.sol";
 
 contract QWalletCompliance is Compliance, Ownable {
