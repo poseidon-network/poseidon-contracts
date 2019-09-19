@@ -1,7 +1,9 @@
 require('dotenv').config();
 const HDWalletProvider = require('truffle-hdwallet-provider');
+const web3 = require('web3');
 
 module.exports = {
+
   networks: {
     development: {
      host: "127.0.0.1",     // Localhost (default: none)
@@ -19,10 +21,10 @@ module.exports = {
     mainnet: {
       provider: () => new HDWalletProvider(process.env.MNENOMIC, `https://mainnet.infura.io/v3/${process.env.PORJECT_ID}`),
       network_id: 1,
-      gas: 7500000,
-      gasPrice: 3000000000,
+      gas: 5100000,
+      gasPrice: web3.utils.toWei('28', 'gwei'),
       confirmations: 2,
-      timeoutBlocks: 200,
+      timeoutBlocks: 50,
       skipDryRun: true,
     },
   },
