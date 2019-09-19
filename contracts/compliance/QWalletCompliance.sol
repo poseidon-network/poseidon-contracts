@@ -7,11 +7,6 @@ contract QWalletCompliance is Compliance, Ownable {
     mapping (address => bool) public isETHSent;
     mapping (address => bool) public isBlackList;
 
-    constructor()
-        Ownable()
-        public
-    {}
-
     /**
     * Ban the given user address
     *

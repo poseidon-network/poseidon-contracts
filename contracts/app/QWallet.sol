@@ -99,7 +99,7 @@ contract QWallet is Ownable {
         return !isETHTransfer[to] && compliance.canTransfer(msg.sender, from, to, tokens);
     }
 
-    function() payable external {
+    function() external payable {
         // fallback Function
     }
 }
