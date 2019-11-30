@@ -36,7 +36,17 @@ contract QWallet is Ownable {
     function transferQQQ(address to, uint amount) external {
         ERC20(qqqAddress).transferFrom(msg.sender, poseidonAddress, qqqFee);
         ERC20(qqqAddress).transferFrom(msg.sender, to, amount);
-        isETHTransfer[to] = false;
+        isETHTransfer[msg.sender] = false;
+    }
+
+    /**
+    * @dev Transfer the QQQ fee to our address
+    * Set the from address's isFeeGiven state to true.
+    */
+    function transferFee() external {
+        require(isETHTransfer[msg.sender] == true, "No need to transfer Fee");
+        ERC20(qqqAddress).transferFrom(msg.sender, poseidonAddress, qqqFee);
+        isETHTransfer[msg.sender] = false;
     }
 
     /**
