@@ -296,16 +296,20 @@ contract QStaking {
         uint _tokenAmount,
         uint planIndex
     ) public {
-        if (StakingPlans[planIndex].planType == 1) { // special
+        require(StakingPlans[planIndex].isActive == true, 'The plan is closed.');
+
+        // special plan
+        if (StakingPlans[planIndex].planType == 1) {
             require(now > StakingPlans[planIndex].bidTime
                 && now < StakingPlans[planIndex].bidTime + StakingPlans[planIndex].bidOpeningPeriod , 'Exceed time.');
+            require(currentStakers[planIndex] < StakingPlans[planIndex].maxStakers, 'Exceed max participants.');
+            require((currentStakeAmount[planIndex] + _tokenAmount) <= (10 ** 18) * StakingPlans[planIndex].totalQuota, 'Exceed total quota.');
+            require(_tokenAmount <= (10 ** 18) * StakingPlans[planIndex].upperLimit, 'Greater than upper limit.');
         }
-        require(currentStakers[planIndex] < StakingPlans[planIndex].maxStakers, 'Exceed max participants.');
+
         require(_tokenAmount >= (10 ** 18) * StakingPlans[planIndex].lowerLimit, 'Less than lower limit.');
-        require(_tokenAmount <= (10 ** 18) * StakingPlans[planIndex].upperLimit, 'Greater than upper limit.');
         require(SafeMath.mod(_tokenAmount, ((10 ** 18) * StakingPlans[planIndex].minUnits)) == 0, 'Invalid lot size.');
-        require((currentStakeAmount[planIndex] + _tokenAmount) <= (10 ** 18) * StakingPlans[planIndex].totalQuota, 'Exceed total quota.');
-        require(StakingPlans[planIndex].isActive == true, 'The plan is closed.');
+        
 
         // deposit token
         called_address.transferFrom(msg.sender, address(this), _tokenAmount);
