@@ -139,7 +139,7 @@ library SafeMath {
         return a % b;
     }
 }
-contract QQQStakingPlan {
+contract QStaking {
     mapping(address => bool) public authorized;
     struct StakingPlan {
         uint planType;          // type number 0: general, 1: special
