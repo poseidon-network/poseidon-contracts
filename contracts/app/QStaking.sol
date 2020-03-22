@@ -318,7 +318,7 @@ contract QStaking {
         uint effectTime = now;
         // general plan
         if (StakingPlans[planIndex].planType == 0) {
-            effectTime = effectTime + (86400 - SafeMath.mod(effectTime, 86400)) - 28800
+            effectTime = effectTime + (86400 - SafeMath.mod(effectTime, 86400)) - 28800;
         }
         allSubscriptionMapping[msg.sender].push(MySubscription(
             planIndex,
@@ -380,7 +380,7 @@ contract QStaking {
     function redeemTokens(address user, uint timestamp) public onlyOwner {
         uint numberOfRedeem = 0;
         uint totalRedeemToken = 0;
-        if (!timestamp) {
+        if (timestamp == 0) {
             timestamp = now;
         }
 
