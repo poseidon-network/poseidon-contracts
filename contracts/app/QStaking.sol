@@ -315,11 +315,16 @@ contract QStaking {
         called_address.transferFrom(msg.sender, address(this), _tokenAmount);
 
         // add user subscription
+        uint effectTime = now;
+        // general plan
+        if (StakingPlans[planIndex].planType == 0) {
+            effectTime = effectTime + (86400 - SafeMath.mod(effectTime, 86400)) - 28800
+        }
         allSubscriptionMapping[msg.sender].push(MySubscription(
             planIndex,
             StakingPlans[planIndex].planType,
             _tokenAmount,
-            now,
+            effectTime,
             StakingPlans[planIndex].bidOpeningPeriod,
             StakingPlans[planIndex].effectTime,
             StakingPlans[planIndex].stakingPeriod,
