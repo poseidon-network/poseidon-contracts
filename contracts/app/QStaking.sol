@@ -380,8 +380,9 @@ contract QStaking {
     function redeemTokens(address user, uint timestamp) public onlyOwner {
         uint numberOfRedeem = 0;
         uint totalRedeemToken = 0;
-        if !timestamp:
+        if (!timestamp) {
             timestamp = now;
+        }
 
         for(uint i = 0; i < allSubscriptionMapping[user].length; i++) {
             MySubscription storage userSubscriptionItem = allSubscriptionMapping[user][i];
