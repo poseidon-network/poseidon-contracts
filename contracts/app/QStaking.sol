@@ -377,18 +377,21 @@ contract QStaking {
      */
     event RedeemTokens(uint numberOfRedeem, uint totalRedeemToken);
 
-    function redeemTokens(address user) public onlyOwner {
+    function redeemTokens(address user, uint timestamp) public onlyOwner {
         uint numberOfRedeem = 0;
         uint totalRedeemToken = 0;
+        if !timestamp:
+            timestamp = now;
+
         for(uint i = 0; i < allSubscriptionMapping[user].length; i++) {
             MySubscription storage userSubscriptionItem = allSubscriptionMapping[user][i];
             bool isAbleToRedeem = true;
             if (userSubscriptionItem.planType == 1) {   // special
-                if (now < (StakingPlans[userSubscriptionItem.planIndex].effectTime + StakingPlans[userSubscriptionItem.planIndex].stakingPeriod)) {
+                if (timestamp < (StakingPlans[userSubscriptionItem.planIndex].effectTime + StakingPlans[userSubscriptionItem.planIndex].stakingPeriod)) {
                     isAbleToRedeem = false;
                 }
             } else if (userSubscriptionItem.planType == 0) {    // general
-                if (userSubscriptionItem.bidTime + userSubscriptionItem.stakingPeriod > now) {
+                if (userSubscriptionItem.bidTime + userSubscriptionItem.stakingPeriod > timestamp) {
                     isAbleToRedeem = false;
                 }
             }
