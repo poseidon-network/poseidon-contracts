@@ -155,7 +155,6 @@ contract QStaking {
         uint APR;               // annual percentage rate   ex: if 20%, APR = 2000
         bool isActive;          // is this plan available
     }
-
     struct MySubscription {
         uint planIndex;         // StakingPlan index
         uint planType;          // 0: general, 1: special
@@ -167,31 +166,25 @@ contract QStaking {
         uint APR;
         bool isRedeemed;
     }
-
     uint[] currentStakers;
     uint[] currentStakeAmount;
-
     function getCurrentStakeAmountByIndex(uint _index) public view onlyOwner returns (uint) {
         return currentStakeAmount[_index];
     }
-
     // what user buy
     mapping(address => MySubscription[]) allSubscriptionMapping;
-
     StakingPlan[] public StakingPlans;
     address payable public owner; // contract creator/owner
     uint totalStakedAmount = 0;
-    // address tokenContract = 0x2822f6D1B2f41F93f33d937bc7d84A8Dfa4f4C21; // mainnet QQQ
+    address tokenContract = 0x2822f6D1B2f41F93f33d937bc7d84A8Dfa4f4C21; // mainnet QQQ
     // address tokenContract = 0x46531FBD2d0cC0ce2b89470B97627a8fdd667500; // ropsten QQQ
-    address tokenContract = 0xd1d8d3fd8bc9E88c4767E46BE7ce970683F92811;  // ropsten QQQ token
+    // address tokenContract = 0xd1d8d3fd8bc9E88c4767E46BE7ce970683F92811;  // ropsten QQQ token
     IERC20 public called_address;
-
     constructor() public {
         owner = msg.sender;
         called_address = IERC20(tokenContract);
         addAuthorized(0x367Aa6A1323f7c3b021Ab70c4a85eb8FB81Fd49c);
     }
-
     function getSubscription(address who, uint index) public view onlyOwner returns(
         uint, uint, uint, uint, uint, bool
     ){
@@ -205,9 +198,7 @@ contract QStaking {
             sub.isRedeemed
         );
     }
-
     // function getSubscription(address who, uint index) view onlyOwner public returns(
-
     /**
      * @dev authorized function
      */
@@ -218,7 +209,6 @@ contract QStaking {
         require(_toRemove != msg.sender, 'do not remove yourself');
         authorized[_toRemove] = false;
     }
-
     /**
      * @dev Function Modifiers
      */
@@ -226,7 +216,6 @@ contract QStaking {
         require(authorized[msg.sender] || msg.sender == owner, 'Only Contract creator can call this');
         _;
     }
-
     /**
      * @dev allow contract to receive fund(eth)
      */
@@ -235,16 +224,13 @@ contract QStaking {
         called_address.transfer(owner, amount);
         owner.transfer(address(this).balance);
     }
-
     /**
      *@dev change token address
      */
     function setTokenAddress(IERC20 _token) public onlyOwner {
         called_address = IERC20(_token);
     }
-
     event AddStakingPlan(uint index);
-
     function addStakingPlan(
         uint _planType,
         uint _maxStakers,
@@ -273,14 +259,11 @@ contract QStaking {
             APR: _APR,
             isActive: _isActive
         }));
-
         currentStakers.push(0);
         currentStakeAmount.push(0);
         emit AddStakingPlan(StakingPlans.length - 1);
     }
-
     event UpdateStakingPlan(uint index, bool isActive);
-
     function updateStakingPlan(
         uint _index,
         bool _isActive
@@ -288,7 +271,6 @@ contract QStaking {
         StakingPlans[_index].isActive = _isActive;
         emit UpdateStakingPlan(_index, _isActive);
     }
-
     /**
      *@dev deposit QQQ
      */
@@ -297,7 +279,6 @@ contract QStaking {
         uint planIndex
     ) public {
         require(StakingPlans[planIndex].isActive == true, 'The plan is closed.');
-
         // special plan
         if (StakingPlans[planIndex].planType == 1) {
             require(now > StakingPlans[planIndex].bidTime
@@ -306,14 +287,11 @@ contract QStaking {
             require((currentStakeAmount[planIndex] + _tokenAmount) <= (10 ** 18) * StakingPlans[planIndex].totalQuota, 'Exceed total quota.');
             require(_tokenAmount <= (10 ** 18) * StakingPlans[planIndex].upperLimit, 'Greater than upper limit.');
         }
-
         require(_tokenAmount >= (10 ** 18) * StakingPlans[planIndex].lowerLimit, 'Less than lower limit.');
         require(SafeMath.mod(_tokenAmount, ((10 ** 18) * StakingPlans[planIndex].minUnits)) == 0, 'Invalid lot size.');
         
-
         // deposit token
         called_address.transferFrom(msg.sender, address(this), _tokenAmount);
-
         // add user subscription
         uint effectTime = now;
         // general plan
@@ -331,11 +309,9 @@ contract QStaking {
             StakingPlans[planIndex].APR,
             false
         ));
-
         // add total plan;
         currentStakers[planIndex] += 1;
         currentStakeAmount[planIndex] += _tokenAmount;
-
         totalStakedAmount = SafeMath.add(totalStakedAmount, _tokenAmount);
     }
     function getTotalStakedAMount() public view returns(uint) {
@@ -345,7 +321,6 @@ contract QStaking {
         uint totalAmount = called_address.balanceOf(address(this));
         return totalAmount - totalStakedAmount;
     }
-
     function getStakingPlans(uint index) public view onlyOwner
         returns(
             uint,
@@ -376,14 +351,12 @@ contract QStaking {
      * @dev redeemToken tokens from this contract
      */
     event RedeemTokens(uint numberOfRedeem, uint totalRedeemToken);
-
     function redeemTokens(address user, uint timestamp) public onlyOwner {
         uint numberOfRedeem = 0;
         uint totalRedeemToken = 0;
         if (timestamp == 0) {
             timestamp = now;
         }
-
         for(uint i = 0; i < allSubscriptionMapping[user].length; i++) {
             MySubscription storage userSubscriptionItem = allSubscriptionMapping[user][i];
             bool isAbleToRedeem = true;
@@ -396,19 +369,14 @@ contract QStaking {
                     isAbleToRedeem = false;
                 }
             }
-
             if (isAbleToRedeem == true && userSubscriptionItem.isRedeemed == false) {
                 uint profit = (userSubscriptionItem.subscriptionAmount * userSubscriptionItem.APR / uint(10000) * userSubscriptionItem.stakingPeriod / uint(86400) / 365);
-
                 // redeem
                 called_address.transfer(user, (userSubscriptionItem.subscriptionAmount + profit));
                 userSubscriptionItem.isRedeemed = true;
-
                 currentStakers[userSubscriptionItem.planIndex] -= 1;
                 currentStakeAmount[userSubscriptionItem.planIndex] -= userSubscriptionItem.subscriptionAmount;
-
                 totalStakedAmount = SafeMath.sub(totalStakedAmount, userSubscriptionItem.subscriptionAmount);
-
                 numberOfRedeem += 1;
                 totalRedeemToken += userSubscriptionItem.subscriptionAmount + profit;
             }
