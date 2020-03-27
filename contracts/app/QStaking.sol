@@ -296,7 +296,13 @@ contract QStaking {
         uint effectTime = now;
         // general plan
         if (StakingPlans[planIndex].planType == 0) {
-            effectTime = effectTime + (86400 - SafeMath.mod(effectTime, 86400)) - 28800;
+            delta = SafeMath.mod(effectTime, 86400)
+            if (delta >= 57600) {
+                effectTime = effectTime + (86400 - delta) + 57600;
+            }
+            else {
+                effectTime = effectTime + (86400 - delta) - 28800;
+            }
         }
         allSubscriptionMapping[msg.sender].push(MySubscription(
             planIndex,
