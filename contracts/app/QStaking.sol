@@ -296,7 +296,7 @@ contract QStaking {
         uint effectTime = now;
         // general plan
         if (StakingPlans[planIndex].planType == 0) {
-            delta = SafeMath.mod(effectTime, 86400)
+            uint delta = SafeMath.mod(effectTime, 86400);
             if (delta >= 57600) {
                 effectTime = effectTime + (86400 - delta) + 57600;
             }
