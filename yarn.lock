@@ -1100,9 +1100,9 @@ decamelize@^1.1.1:
   integrity sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=
 
 decode-uri-component@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
-  integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.2.tgz#e69dbe25d37941171dd540e024c444cd5188e1e9"
+  integrity sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==
 
 decompress-response@^3.2.0, decompress-response@^3.3.0:
   version "3.3.0"
@@ -5073,25 +5073,6 @@ solium-plugin-zeppelin@^0.0.2:
     eslint "^4.13.1"
     solparse "^2.2.2"
     util-deprecate "^1.0.2"
-
-solium@^1.1.6:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/solium/-/solium-1.2.4.tgz#7908806e5e6c596ddb18b7aa64757752428ce238"
-  integrity sha512-3zTU9GsW1GYmqIl52SLkFl3Jl8QpuR7X6qCfn2/U4VnXl3DaSDCFxhWcDMVFi+Gw3PyHrJAVRcQLJzlqCFtMiA==
-  dependencies:
-    ajv "^5.2.2"
-    chokidar "^1.6.0"
-    colors "^1.1.2"
-    commander "^2.9.0"
-    diff "^3.5.0"
-    eol "^0.9.1"
-    js-string-escape "^1.0.1"
-    lodash "^4.14.2"
-    sol-digger "0.0.2"
-    sol-explore "1.6.1"
-    solium-plugin-security "0.1.1"
-    solparse "2.2.8"
-    text-table "^0.2.0"
 
 solparse@2.2.8, solparse@^2.2.2:
   version "2.2.8"
